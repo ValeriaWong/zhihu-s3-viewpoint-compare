@@ -1,0 +1,13 @@
+# Cloudflare Workers (free tier) config for the Zhihu S3 demo.
+# Deploy: wrangler login && wrangler deploy
+# The demo runs in mock mode; no secret is needed or stored here.
+# To enable live Zhihu data later: wrangler secret put ZHIHU_ACCESS_SECRET
+name = "zhihu-s3-viewpoint-compare"
+main = "worker.js"
+compatibility_date = "2026-11-21"
+compatibility_flags = ["nodejs_compat"]
+
+# Static frontend (public/) served as Workers Static Assets.
+[assets]
+directory = "./public"
+binding = "ASSETS"

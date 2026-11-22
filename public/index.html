@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="title">法律观点对比助手 · 知乎黑客松 S3</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <h1 data-i18n="title">法律观点对比助手</h1>
+    <p class="tagline" data-i18n="tagline">用知乎真实问答，对比法律观点，处处可溯源</p>
+    <div class="controls">
+      <label><span data-i18n="language">回答语言</span>
+        <select id="lang">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="ru">Русский</option>
+        </select>
+      </label>
+      <label><span data-i18n="model">归纳模型</span>
+        <select id="model">
+          <option value="thinking" data-i18n="modelThinking">深度思考（默认）</option>
+          <option value="fast" data-i18n="modelFast">快速</option>
+          <option value="agent" data-i18n="modelAgent">智能思考</option>
+        </select>
+      </label>
+      <span id="modeBadge" class="badge">…</span>
+    </div>
+    <p id="mockNote" class="mock-note" hidden data-i18n="mockNote">模拟模式：未配置 Access Secret，展示模拟数据（结构与真实 API 一致）。</p>
+    <p id="quotaLine" class="quota"></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <div class="search-row">
+      <input id="query" type="text" data-i18n-ph="searchPlaceholder" placeholder="输入法律问题，例如：未成年人签订的合同有效吗？">
+      <button id="searchBtn" data-i18n="searchBtn">搜索知乎问答</button>
+    </div>
+    <p class="hint" data-i18n="searchHint">知乎内容以中文为主；提问可用中文、英文或俄文，对比结果按上方选择的语言呈现。</p>
+    <div id="searchStatus" class="status"></div>
+    <div id="results" class="results"></div>
+  </section>
+
+  <section class="card" id="answersCard" hidden>
+    <h2 data-i18n="answersTitle">同一问题下的多条回答摘要</h2>
+    <p class="hint" data-i18n="selectAnswers">勾选要参与对比的回答，点击生成观点对比。</p>
+    <div id="answers" class="answers"></div>
+    <button id="compareBtn" data-i18n="compareBtn">生成观点对比</button>
+    <div id="compareStatus" class="status"></div>
+  </section>
+
+  <section class="card" id="compareCard" hidden>
+    <h2 data-i18n="compareTitle">观点对比</h2>
+    <p id="compareSummary" class="summary"></p>
+    <h3 data-i18n="consensus">共识</h3>
+    <ul id="consensusList" class="points"></ul>
+    <h3 data-i18n="divergence">分歧</h3>
+    <ul id="divergenceList" class="points"></ul>
+  </section>
+
+  <footer class="foot">
+    <span data-i18n="foot">赛道：AI × 知识与探索 · 知乎黑客松 S3 湾区共创季 · 每个结论都带溯源链接回知乎原文</span>
+  </footer>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
