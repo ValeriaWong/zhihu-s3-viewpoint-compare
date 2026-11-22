@@ -5,7 +5,7 @@
 
 const I18N = {
   zh: {
-    title: '法律观点对比助手',
+    title: '观澜 · 法律观点对比助手',
     tagline: '用知乎真实问答，对比法律观点，处处可溯源',
     language: '回答语言',
     model: '归纳模型',
@@ -37,7 +37,7 @@ const I18N = {
     foot: '赛道：AI × 知识与探索 · 知乎黑客松 S3 湾区共创季 · 每个结论都带溯源链接回知乎原文',
   },
   en: {
-    title: 'Legal Viewpoint Compare',
+    title: '观澜 · Legal Viewpoint Compare',
     tagline: 'Compare legal viewpoints using real Zhihu Q&A, every claim traceable',
     language: 'Answer language',
     model: 'Synthesis model',
@@ -69,7 +69,7 @@ const I18N = {
     foot: 'Track: AI x Knowledge & Exploration · Zhihu Hackathon S3 Bay Area Co-creation · every conclusion links back to its Zhihu source',
   },
   ru: {
-    title: 'Сравнение правовых позиций',
+    title: '观澜 · Сравнение правовых позиций',
     tagline: 'Сравнение правовых позиций по реальным вопросам и ответам Zhihu, каждый вывод с источником',
     language: 'Язык ответа',
     model: 'Модель обобщения',
