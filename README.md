@@ -67,6 +67,8 @@ node server.js
 ## 文件清单
 
 - server.js — Node 服务：托管静态前端 + /api 路由（零依赖）
+- api/ — Vercel Serverless Functions 入口（status/quota/search/answers/compare 各一薄层，复用 lib/api.js；public/ 由 Vercel 静态托管）
+- lib/vercel.js — Vercel 适配层（读请求体 → 调 lib/api.js → 发 JSON）
 - worker.js — Cloudflare Workers 入口（fetch handler，复用 lib/api.js）
 - wrangler.toml — Workers 部署配置（免费层，Static Assets 托管 public/）
 - lib/api.js — 与运行环境无关的 API 路由（Node 与 Workers 共用）
@@ -79,7 +81,27 @@ node server.js
 - .env.example — 环境变量模板（无真实值）
 - .gitignore — 排除 node_modules 与 .env
 
-## 部署到 Cloudflare（免费层，Workers + Static Assets）
+## 部署到 Vercel（Hobby 免费层，当前主路）
+
+官网定价页 2026-11-24 核实：Hobby 免费，函数调用 100 万次/月、CDN 请求 100 万次/月、
+快速传输 100GB/月；免费账号超额不能额外购买（不会意外扣费）。绑卡与否定价页没写，
+注册时以实际页面为准。
+
+```bash
+# 在 Vercel 控制台用 GitHub 账号（ValeriaWong）登录，Import 这个仓库即可；
+# 不需要构建命令，public/ 自动静态托管，api/ 下五个文件自动成为函数。
+```
+
+真实数据模式（以后联调时）：在 Vercel 项目 Settings → Environment Variables
+里加 `ZHIHU_ACCESS_SECRET`（只进 Vercel 的加密存储，不写进代码和仓库），
+重新部署一次即可。
+
+## 部署到 Cloudflare（已放弃：账号层 Error 1101）
+
+2026-11-22 实测：部署成功但全站报 Error 1101；连控制台手工建的 Hello World
+也报 1101，日志完全空白，请求根本没进 Worker 代码——与代码、wrangler 无关，
+是账号/平台层问题。改走 Vercel。worker.js 与 wrangler.toml 留在仓库作记录，
+测试用的两个诊断 Worker（zhihu-s3-smoke-test、zhihu-s3-dash-test）待清理。
 
 已适配好，本地已用 `wrangler dev` 验证通过（页面 200，/api/status、/api/search、
 /api/answers、/api/compare、/api/quota 全通，模拟模式）。
